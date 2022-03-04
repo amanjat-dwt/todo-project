@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { addTask } from "../redux/action";
 
 const NewTask = (props) => {
+  console.log("props", props);
   const [input, setInput] = useState("");
 
   const inputChangeHandler = (event) => {
@@ -10,11 +13,7 @@ const NewTask = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    const taskItem = {
-        title: input,
-    };
-    props.onAddTAsk(taskItem);
-    console.log('new task props', props);
+    props.addTask("helo");
   };
 
   return (
@@ -22,9 +21,9 @@ const NewTask = (props) => {
       <input placeholder="title" onChange={inputChangeHandler} />
       <div>
         {/* <Link to="/" element={<Home />}> */}
-            <button type="submit">ADD TASK</button>
+        <button type="submit">ADD TASK</button>
         {/* </Link> */}
-        
+
         <Link to="/">
           <button>Back</button>
         </Link>
@@ -33,4 +32,15 @@ const NewTask = (props) => {
   );
 };
 
-export default NewTask;
+const mapStateToProps = (state) => {
+  return {
+    state: state,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addTask: () => dispatch(addTask("ask")),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(NewTask);
