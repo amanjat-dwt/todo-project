@@ -2,8 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import NewTask from "./NewTask";
 import { connect } from "react-redux";
+import Tasks from "./Tasks";
 
 const Home = (props) => {
+
   return (
     <section>
       <div>
@@ -13,9 +15,11 @@ const Home = (props) => {
       <Link to="/newtask">
         <button>Create Task</button>
       </Link>
-      <div style={{ margin: 20 }}>
+      {/* <div style={{ margin: 20 }}>
         <NewTask />
-      </div>
+      </div> */}
+      
+      <Tasks />
 
       {props.state.title}
     </section>
