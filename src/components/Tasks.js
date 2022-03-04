@@ -1,11 +1,18 @@
 import React from "react";
+import { connect } from "react-redux";
 
 const Tasks = (props) => {
   return (
     <div>
-      <li>Tasks</li>
+      <li>{props.state.title}</li>
     </div>
   );
 };
 
-export default Tasks;
+const mapStateToProps = (state) => {
+  return {
+    state: state,
+  };
+};
+
+export default connect(mapStateToProps)(Tasks);

@@ -1,12 +1,12 @@
 const initialState = {
-  title: "",
+  title: [],
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "ADD_TASK":
       return {
-        title: action.payload,
+        title: [...state.title, action.payload],
       };
 
     case "DELETE_TASK":
