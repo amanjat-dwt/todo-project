@@ -2,11 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 
 const Tasks = (props) => {
-  return (
-    <div>
-      <li>{props.state.title}</li>
-    </div>
-  );
+  const taskArray = props.state.title;
+
+  const taskItems = taskArray.map((task) => <li>{task}</li>);
+
+  return <div>{taskItems}</div>;
 };
 
 const mapStateToProps = (state) => {
