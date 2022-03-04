@@ -4,9 +4,26 @@ import { connect } from "react-redux";
 const Tasks = (props) => {
   const taskArray = props.state.title;
 
-  const taskItems = taskArray.map((task) => <li>{task}</li>);
+  const taskDeleteHandler = (task) => {
+    console.log(`button ${task.id} clicked`);
+  };
 
-  return <div>{taskItems}</div>;
+  const taskItems = taskArray.map((task, i) => (
+    <li key={i}>
+      {task}
+      <button className="small" onClick={taskDeleteHandler}>
+        delete
+      </button>
+    </li>
+  ));
+
+  console.log(taskItems);
+
+  return (
+    <div>
+      <div>{taskItems}</div>
+    </div>
+  );
 };
 
 const mapStateToProps = (state) => {
