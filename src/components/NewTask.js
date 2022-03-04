@@ -4,43 +4,32 @@ import { connect } from "react-redux";
 import { addTask } from "../redux/action";
 
 const NewTask = (props) => {
-  console.log("props", props);
-  const [input, setInput] = useState("");
-
-  const inputChangeHandler = (event) => {
-    setInput(event.target.value);
-  };
+  const [title, setTitle] = useState();
 
   const submitHandler = (event) => {
     event.preventDefault();
-    props.addTask("helo");
+    props.addTask(title);
   };
 
   return (
-    <form onSubmit={submitHandler}>
-      <input placeholder="title" onChange={inputChangeHandler} />
-      <div>
-        {/* <Link to="/" element={<Home />}> */}
-        <button type="submit">ADD TASK</button>
-        {/* </Link> */}
-
-        <Link to="/">
-          <button>Back</button>
-        </Link>
-      </div>
+    <form id="hello" onSubmit={submitHandler}>
+      <input name="title_input_name" placeholder="title" onChange={(e) => setTitle(e.target.value)} />
+      <button type="submit">ADD TASK</button>
     </form>
   );
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addTask: (title) => {
+      return dispatch(addTask(title));
+    },
+  };
+};
 const mapStateToProps = (state) => {
   return {
     state: state,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addTask: () => dispatch(addTask("ask")),
-  };
-};
 export default connect(mapStateToProps, mapDispatchToProps)(NewTask);
