@@ -5,7 +5,6 @@ import Tasks from "./Tasks";
 const Home = (props) => {
   return (
     <section className="home-container">
-      C
       <div>
         <h1>CREATE NEW TASK</h1>
       </div>

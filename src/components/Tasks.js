@@ -4,8 +4,9 @@ import { connect } from "react-redux";
 const Tasks = (props) => {
   const taskArray = props.state.title;
 
-  const taskDeleteHandler = (task) => {
-    console.log(`button ${task.id} clicked`);
+  const taskDeleteHandler = (event, id) => {
+    console.log(`button ${event} clicked`);
+    props.deleteTask(id);
   };
 
   const taskItems = taskArray.map((task, i) => (

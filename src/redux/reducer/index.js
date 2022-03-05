@@ -11,8 +11,7 @@ const reducer = (state = initialState, action) => {
 
     case "DELETE_TASK":
       return {
-        // return posts.filter((post) => post._id !== action.payload);
-        title: "",
+        title: state.filter((title) => title.i !== action.payload),
       };
 
     default:
