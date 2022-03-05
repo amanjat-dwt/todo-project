@@ -21,7 +21,9 @@ const NewTask = (props) => {
         placeholder="title"
         onChange={(e) => setTitle(e.target.value)}
       />
-      <button type="submit">ADD TASK</button>
+      <button className="btn" type="submit">
+        ADD TASK
+      </button>
     </form>
   );
 };

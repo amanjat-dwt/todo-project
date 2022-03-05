@@ -10,8 +10,8 @@ const Tasks = (props) => {
 
   const taskItems = taskArray.map((task, i) => (
     <li key={i}>
-      {task}
-      <button className="small" onClick={taskDeleteHandler}>
+      <span>{task}</span>
+      <button className="btn-small" onClick={taskDeleteHandler}>
         delete
       </button>
     </li>
@@ -21,7 +21,7 @@ const Tasks = (props) => {
 
   return (
     <div>
-      <div>{taskItems}</div>
+      <div className="flex-container">{taskItems}</div>
     </div>
   );
 };

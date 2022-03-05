@@ -4,15 +4,16 @@ import Tasks from "./Tasks";
 
 const Home = (props) => {
   return (
-    <section>
+    <section className="home-container">
+      C
       <div>
         <h1>CREATE NEW TASK</h1>
       </div>
-
-      <Link to="/newtask">
-        <button>Create Task</button>
-      </Link>
-
+      <div className="btn-div">
+        <Link to="/newtask">
+          <button className="btn">Create Task</button>
+        </Link>
+      </div>
       <Tasks />
     </section>
   );
