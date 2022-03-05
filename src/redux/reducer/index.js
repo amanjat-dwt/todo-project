@@ -7,11 +7,12 @@ const reducer = (state = initialState, action) => {
     case "ADD_TASK":
       return {
         title: [...state.title, action.payload],
+        id: Math.floor(Math.random() * 200 + 1),
       };
 
     case "DELETE_TASK":
       return {
-        title: state.filter((title) => title.i !== action.payload),
+        title: state.title.filter((task) => task.id !== action.payload),
       };
 
     default:

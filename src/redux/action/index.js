@@ -5,10 +5,10 @@ const addTask = (props) => {
   };
 };
 
-const deleteTask = (props) => {
+const deleteTask = (id) => {
   return {
     type: "DELETE_TASK",
-    payload: props.id,
+    payload: id,
   };
 };
 
