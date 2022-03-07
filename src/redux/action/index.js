@@ -15,4 +15,14 @@ const deleteTask = (id) => {
   };
 };
 
-export { addTask, deleteTask };
+const editTask = (props) => {
+  return {
+    type: "EDIT_TASK",
+    payload: {
+      id: props.id,
+      data: props,
+    },
+  };
+};
+
+export { addTask, deleteTask, editTask };

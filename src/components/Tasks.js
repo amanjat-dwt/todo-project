@@ -1,22 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect, useDispatch } from "react-redux";
-import { deleteTask } from "../redux/action/index";
+import { deleteTask, editTask } from "../redux/action/index";
+import "./Tasks.css";
 
 const Tasks = (props) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [resetTitle, setResetTitle] = useState();
   const dispatch = useDispatch();
   const taskArray = props.state.title;
   console.log(taskArray);
 
+  const editHandler = (e) => {
+    setIsEditing(true);
+  };
+
   const taskItems = taskArray.map((task) => (
     <ul key={task.id}>
-      <li>
-        <span>{task.data}</span>
-        <button
-          className="btn-small"
-          onClick={() => dispatch(deleteTask(task.id))}
-        >
-          delete
-        </button>
+      <li className="task-div">
+        {isEditing ? (
+          <div>
+            <input onChange={(e) => setResetTitle(e.target.value)} />
+            <button
+              className="btn-small"
+              onClick={(e) => {
+                dispatch(editTask(resetTitle));
+                setIsEditing(false);
+              }}
+            >
+              done
+            </button>
+          </div>
+        ) : (
+          <span>{task.data}</span>
+        )}
+        {!isEditing && (
+          <button className="btn-small" onClick={editHandler}>
+            edit
+          </button>
+        )}
+        {!isEditing && (
+          <button
+            className="btn-small"
+            onClick={() => dispatch(deleteTask(task.id))}
+          >
+            delete
+          </button>
+        )}
       </li>
     </ul>
   ));
@@ -30,8 +59,8 @@ const Tasks = (props) => {
 
 // const mapDispatchToProps = (dispatch) => {
 //   return {
-//     deleteTask: (id) => {
-//       return dispatch(deleteTask(id));
+//     editTask: (resetTitle) => {
+//       return dispatch(editTask(resetTitle));
 //     },
 //   };
 // };

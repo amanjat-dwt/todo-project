@@ -25,6 +25,13 @@ const reducer = (state = initialState, action) => {
         title: newList,
       };
 
+    case "EDIT_TASK":
+      const { newData } = action.payload;
+      return {
+        ...state,
+        title: [...(state.title.data = newData.data)],
+      };
+
     default:
       return state;
   }

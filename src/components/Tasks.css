@@ -1,0 +1,12 @@
+.task-div {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+span {
+  display: flex;
+  justify-content: flex-start;
+  color: white;
+  width: 200px;
+}

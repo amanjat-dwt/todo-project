@@ -7,7 +7,7 @@ const Home = (props) => {
   return (
     <section className="home-container">
       <div>
-        <h1>CREATE NEW TASK</h1>
+        <h1>TASKS LIST</h1>
       </div>
       <div className="btn-div">
         <Link to="/newtask">
