@@ -19,7 +19,7 @@ const editTask = (props) => {
   return {
     type: "EDIT_TASK",
     payload: {
-      id: props.id,
+      id: new Date().getTime().toString(),
       data: props,
     },
   };

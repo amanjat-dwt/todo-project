@@ -26,10 +26,12 @@ const reducer = (state = initialState, action) => {
       };
 
     case "EDIT_TASK":
-      const { newData } = action.payload;
+      const index = state.title.findIndex((task) => task.id !== action.id);
+      const newArray = [...state.title];
+      newArray[index] = action.payload;
       return {
         ...state,
-        title: [...(state.title.data = newData.data)],
+        title: newArray,
       };
 
     default:

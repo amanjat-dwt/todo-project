@@ -19,7 +19,10 @@ const Tasks = (props) => {
       <li className="task-div">
         {isEditing ? (
           <div>
-            <input onChange={(e) => setResetTitle(e.target.value)} />
+            <input
+              className="edit-input"
+              onChange={(e) => setResetTitle(e.target.value)}
+            />
             <button
               className="btn-small"
               onClick={(e) => {

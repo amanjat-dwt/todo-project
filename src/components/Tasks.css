@@ -6,7 +6,12 @@
 
 span {
   display: flex;
-  justify-content: flex-start;
+  justify-content: left;
   color: white;
-  width: 200px;
+  width: 150px;
+  align-items: center;
+}
+
+.edit-input {
+  margin-top: 0px;
 }
