@@ -5,14 +5,24 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "ADD_TASK":
+      const { id, data } = action.payload;
+
       return {
-        title: [...state.title, action.payload],
-        id: Math.floor(Math.random() * 200 + 1),
+        ...state,
+        title: [
+          ...state.title,
+          {
+            id: id,
+            data: data,
+          },
+        ],
       };
 
     case "DELETE_TASK":
+      const newList = state.title.filter((task) => task.id !== action.payload);
       return {
-        title: state.title.filter((task) => task.id !== action.payload),
+        ...state,
+        title: newList,
       };
 
     default:

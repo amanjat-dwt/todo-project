@@ -1,7 +1,10 @@
 const addTask = (props) => {
   return {
     type: "ADD_TASK",
-    payload: props,
+    payload: {
+      id: new Date().getTime().toString(),
+      data: props,
+    },
   };
 };
 

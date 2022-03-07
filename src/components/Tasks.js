@@ -1,32 +1,25 @@
 import React from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { deleteTask } from "../redux/action/index";
 
 const Tasks = (props) => {
+  const dispatch = useDispatch();
   const taskArray = props.state.title;
-
-  const taskDeleteHandler = (key) => {
-    console.log(key);
-    props.deleteTask(key);
-  };
-
-  const uKey = props.state.id;
-  console.log(uKey);
+  console.log(taskArray);
 
   const taskItems = taskArray.map((task) => (
-    <ul key={uKey}>
+    <ul key={task.id}>
       <li>
-        <span>
-          {task}
-          <button className="btn-small" onClick={taskDeleteHandler}>
-            delete
-          </button>
-        </span>
+        <span>{task.data}</span>
+        <button
+          className="btn-small"
+          onClick={() => dispatch(deleteTask(task.id))}
+        >
+          delete
+        </button>
       </li>
     </ul>
   ));
-
-  console.log(taskItems);
 
   return (
     <div>
@@ -35,13 +28,13 @@ const Tasks = (props) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    deleteTask: (key) => {
-      return dispatch(deleteTask(key));
-    },
-  };
-};
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     deleteTask: (id) => {
+//       return dispatch(deleteTask(id));
+//     },
+//   };
+// };
 
 const mapStateToProps = (state) => {
   return {
@@ -49,4 +42,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Tasks);
+export default connect(mapStateToProps)(Tasks);
