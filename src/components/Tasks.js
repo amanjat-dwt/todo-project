@@ -8,10 +8,20 @@ const Tasks = (props) => {
   const [resetTitle, setResetTitle] = useState();
   const dispatch = useDispatch();
   const taskArray = props.state.title;
+
   console.log(taskArray);
 
-  const editHandler = (e) => {
+  const editHandler = () => {
     setIsEditing(true);
+  };
+
+  const titleChangeHandler = (e) => {
+    setResetTitle(e.target.value);
+  };
+
+  const doneHandler = () => {
+    dispatch(editTask(resetTitle));
+    setIsEditing(false);
   };
 
   const taskItems = taskArray.map((task) => (
@@ -19,17 +29,8 @@ const Tasks = (props) => {
       <li className="task-div">
         {isEditing ? (
           <div>
-            <input
-              className="edit-input"
-              onChange={(e) => setResetTitle(e.target.value)}
-            />
-            <button
-              className="btn-small"
-              onClick={(e) => {
-                dispatch(editTask(resetTitle));
-                setIsEditing(false);
-              }}
-            >
+            <input className="edit-input" onChange={titleChangeHandler} />
+            <button className="btn-small" onClick={doneHandler}>
               done
             </button>
           </div>

@@ -36,10 +36,20 @@ li {
   cursor: pointer;
 }
 
+.btn:hover {
+  transform: scale(1.2);
+  background-color: #34ed8e;
+}
+
 input {
   border: 3px;
   border-style: solid;
   padding: 10px;
+  margin-right: 30px;
+}
+
+input:hover {
+  animation: pop 0.3s linear 1;
 }
 
 .flex-container {
@@ -57,6 +67,11 @@ input {
   padding: 8px;
   font-size: medium;
   border-radius: 5px;
+}
+
+.btn-small:hover {
+  background-color: #2f70e0;
+  transform: scale(0.9);
 }
 
 input {
