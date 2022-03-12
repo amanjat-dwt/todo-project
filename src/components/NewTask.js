@@ -4,23 +4,19 @@ import { useNavigate } from "react-router-dom";
 import { addTask } from "../redux/action";
 
 const NewTask = (props) => {
-  const [title, setTitle] = useState();
+  const [task, setTask] = useState();
 
   const navigate = useNavigate();
 
   const submitHandler = (event) => {
     event.preventDefault();
-    props.addTask(title);
+    props.addTask(task);
     navigate("/");
   };
 
   return (
     <form id="hello" onSubmit={submitHandler}>
-      <input
-        name="title_input_name"
-        placeholder="title"
-        onChange={(e) => setTitle(e.target.value)}
-      />
+      <input name="title_input_name" placeholder="title" onChange={(e) => setTask(e.target.value)} />
       <button className="btn" type="submit">
         ADD TASK
       </button>
@@ -30,8 +26,8 @@ const NewTask = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addTask: (title) => {
-      return dispatch(addTask(title));
+    addTask: (task) => {
+      return dispatch(addTask(task));
     },
   };
 };

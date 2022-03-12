@@ -1,41 +1,45 @@
 import React, { useState } from "react";
 import { connect, useDispatch } from "react-redux";
-import { deleteTask, editTask } from "../redux/action/index";
+import { deleteTask, editTask } from "../redux/action";
 import "./Tasks.css";
 
 const Tasks = (props) => {
   const [isEditing, setIsEditing] = useState(false);
   const [resetTitle, setResetTitle] = useState();
   const dispatch = useDispatch();
-  const taskArray = props.state.title;
-
-  console.log(taskArray);
+  const { tasks } = props.state;
 
   const editHandler = () => {
     setIsEditing(true);
   };
 
   const titleChangeHandler = (e) => {
+    console.log("title change handler", e.target.value);
     setResetTitle(e.target.value);
   };
 
-  const doneHandler = () => {
-    dispatch(editTask(resetTitle));
+  const doneHandler = (id) => {
+    dispatch(editTask({ id, resetTitle }));
     setIsEditing(false);
   };
 
-  const taskItems = taskArray.map((task) => (
+  const submitHandler = (event) => {
+    event.preventDefault();
+    props.editTask(resetTitle);
+  };
+
+  const taskItems = tasks.map((task) => (
     <ul key={task.id}>
       <li className="task-div">
         {isEditing ? (
-          <div>
+          <form id="hello" onSubmit={submitHandler}>
             <input className="edit-input" onChange={titleChangeHandler} />
-            <button className="btn-small" onClick={doneHandler}>
+            <button className="btn-small" onClick={() => doneHandler(task.id)} type="button">
               done
             </button>
-          </div>
+          </form>
         ) : (
-          <span>{task.data}</span>
+          <span>{task.taskItem}</span>
         )}
         {!isEditing && (
           <button className="btn-small" onClick={editHandler}>
@@ -43,10 +47,7 @@ const Tasks = (props) => {
           </button>
         )}
         {!isEditing && (
-          <button
-            className="btn-small"
-            onClick={() => dispatch(deleteTask(task.id))}
-          >
+          <button className="btn-small" onClick={() => dispatch(deleteTask(task.id))}>
             delete
           </button>
         )}
@@ -61,13 +62,11 @@ const Tasks = (props) => {
   );
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     editTask: (resetTitle) => {
-//       return dispatch(editTask(resetTitle));
-//     },
-//   };
-// };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    editTask: ({ id, updatedTaskItem }) => dispatch(editTask({ id, updatedTaskItem })),
+  };
+};
 
 const mapStateToProps = (state) => {
   return {
@@ -75,4 +74,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Tasks);
+export default connect(mapStateToProps, mapDispatchToProps)(Tasks);
