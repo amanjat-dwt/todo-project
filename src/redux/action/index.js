@@ -16,7 +16,6 @@ const deleteTask = (id) => {
 };
 
 const editTask = (props) => {
-  console.log("editTask", props);
   return {
     type: "EDIT_TASK",
     payload: {

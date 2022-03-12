@@ -9,8 +9,8 @@ const Tasks = (props) => {
   const dispatch = useDispatch();
   const { tasks } = props.state;
 
-  const editHandler = () => {
-    setIsEditing(true);
+  const editHandler = (id) => {
+    setIsEditing(id);
   };
 
   const titleChangeHandler = (e) => {
@@ -31,7 +31,7 @@ const Tasks = (props) => {
   const taskItems = tasks.map((task) => (
     <ul key={task.id}>
       <li className="task-div">
-        {isEditing ? (
+        {isEditing === task.id ? (
           <form id="hello" onSubmit={submitHandler}>
             <input className="edit-input" onChange={titleChangeHandler} />
             <button className="btn-small" onClick={() => doneHandler(task.id)} type="button">
@@ -42,7 +42,7 @@ const Tasks = (props) => {
           <span>{task.taskItem}</span>
         )}
         {!isEditing && (
-          <button className="btn-small" onClick={editHandler}>
+          <button className="btn-small" onClick={() => editHandler(task.id)}>
             edit
           </button>
         )}
