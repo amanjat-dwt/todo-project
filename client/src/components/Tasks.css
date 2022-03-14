@@ -1,0 +1,17 @@
+.task-div {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+span {
+  display: flex;
+  justify-content: left;
+  color: white;
+  width: 150px;
+  align-items: center;
+}
+
+.edit-input {
+  margin-top: 0px;
+}

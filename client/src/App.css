@@ -1,0 +1,9 @@
+h1 {
+  padding: 40px;
+  display: flex;
+}
+
+.side-bar {
+  justify-content: left;
+  position: relative;
+}
