@@ -3,7 +3,7 @@ const addTask = (props) => {
     type: "ADD_TASK",
     payload: {
       id: new Date().getTime().toString(),
-      data: props,
+      taskItem: props,
     },
   };
 };
@@ -19,8 +19,8 @@ const editTask = (props) => {
   return {
     type: "EDIT_TASK",
     payload: {
-      id: new Date().getTime().toString(),
-      data: props,
+      id: props.id,
+      updatedTaskItem: props.resetTitle,
     },
   };
 };

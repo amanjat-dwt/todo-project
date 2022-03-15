@@ -1,37 +1,37 @@
 const initialState = {
-  title: [],
+  tasks: [],
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "ADD_TASK":
-      const { id, data } = action.payload;
+      const { id, taskItem } = action.payload;
 
       return {
         ...state,
-        title: [
-          ...state.title,
+        tasks: [
+          ...state.tasks,
           {
-            id: id,
-            data: data,
+            id,
+            taskItem,
           },
         ],
       };
 
     case "DELETE_TASK":
-      const newList = state.title.filter((task) => task.id !== action.payload);
+      const newTasks = state.tasks.filter((taskItem) => taskItem.id !== action.payload);
       return {
         ...state,
-        title: newList,
+        tasks: newTasks,
       };
 
     case "EDIT_TASK":
-      const index = state.title.findIndex((task) => task.id !== action.id);
-      const newArray = [...state.title];
-      newArray[index] = action.payload;
+      const index = state.tasks.findIndex((taskItem) => taskItem.id === action.payload.id);
+      const newTasks2 = [...state.tasks];
+      newTasks2[index].taskItem = action.payload.updatedTaskItem;
       return {
         ...state,
-        title: newArray,
+        tasks: newTasks2,
       };
 
     default:
